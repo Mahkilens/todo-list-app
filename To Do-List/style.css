@@ -1,0 +1,155 @@
+/* ---------- Base ---------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root{
+  --bg1:#0b0702;
+  --bg2:#6b3e07;
+  --card: rgba(255,255,255,.08);
+  --card-stroke: rgba(255,255,255,.14);
+  --text:#fff;
+  --muted:#c7c7c7;
+  --primary:#4f8cff;
+  --primary-hover:#3e74d6;
+  --danger: rgba(244,63,94,.18);
+  --danger-text:#ffd1d1;
+  --radius:14px;
+  --radius-sm:10px;
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --shadow-soft: 0 4px 16px rgba(0,0,0,.25);
+}
+
+body{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: linear-gradient(to bottom, var(--bg1), var(--bg2));
+  color:var(--text);
+  font-family: "Be Vietnam Pro", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* ---------- App Card ---------- */
+.todo-app{
+  background: rgba(255,255,255,.10);
+  border: 1px solid var(--card-stroke);
+  border-radius: var(--radius);
+  padding: 28px 26px 24px;
+  width: min(560px, 92vw);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(6px);
+}
+
+/* Title */
+.title{
+  text-align:center;
+  font-weight: 700;
+  letter-spacing:.4px;
+  font-size: clamp(22px, 3vw, 30px);
+  margin-bottom: 14px;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.title:hover{ transform: translateY(1px); box-shadow: 0 6px 16px rgba(0,0,0,.25); }
+
+/* ---------- Form ---------- */
+#new-task-form{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  margin-top:6px;
+}
+
+#task-input{
+  flex:1;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--card-stroke);
+  background: rgba(255,255,255,.08);
+  color: var(--text);
+  outline: none;
+  transition: border-color .2s ease, background .2s ease, box-shadow .2s ease;
+}
+#task-input::placeholder{ color: var(--muted); }
+#task-input:focus{
+  border-color: var(--primary);
+  background: rgba(255,255,255,.12);
+  box-shadow: 0 0 0 4px rgba(79,140,255,.18);
+}
+
+/* ---------- Buttons ---------- */
+.add-btn, .edit-btn, .delete-btn{
+  border: none;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font: inherit;
+  transition: transform .12s ease, opacity .12s ease, background .12s ease;
+  display:inline-flex; align-items:center; gap:6px;
+}
+
+.add-btn{ background: var(--primary); color:#fff; }
+.add-btn:hover{ background: var(--primary-hover); transform: translateY(-1px); }
+.add-btn:active{ transform: translateY(0); opacity:.9; }
+
+.edit-btn{ background: rgba(255,255,255,.16); color:#fff; }
+.edit-btn:hover{ transform: translateY(-1px); }
+
+.delete-btn{ background: var(--danger); color: var(--danger-text); }
+.delete-btn:hover{ transform: translateY(-1px); }
+
+/* ---------- Task List ---------- */
+.task-list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-top: 18px;
+}
+
+.task{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding:12px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  border: 1px solid var(--card-stroke);
+  box-shadow: var(--shadow-soft);
+}
+
+.left-section{ display:flex; align-items:center; gap:10px; }
+
+/* Larger, cleaner checkbox */
+.task-checkbox{
+  width:18px; height:18px;
+  accent-color: var(--primary);
+  cursor:pointer;
+}
+
+.task-text{ line-height:1.35; }
+
+/* Completed state */
+.task.completed .task-text{
+  text-decoration: line-through;
+  opacity: .6;
+}
+
+/* Edit input inside a row */
+.edit-input{
+  font: inherit;
+  padding: 6px 8px;
+  border: 1px solid var(--card-stroke);
+  border-radius: var(--radius-sm);
+  outline: none;
+  background: rgba(255,255,255,.9);
+  color: #222;
+}
+.edit-input:focus{
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(79,140,255,.18);
+}
+
+/* ---------- Mobile tweaks ---------- */
+@media (max-width: 420px){
+  .right-section { gap:6px; }
+  .add-btn, .edit-btn, .delete-btn{ padding: 7px 10px; }
+}
